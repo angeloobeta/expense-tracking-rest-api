@@ -1,4 +1,4 @@
-package com.example.expense_tracking_rest_api;
+package com.example.expense_tracking_rest_api.data;
 
 import java.util.HashMap;
 
@@ -6,7 +6,7 @@ public class DataStore {
 
     private final HashMap<String,String> store = new HashMap<String, String>();
 
-    public DataStore() {
+    public  DataStore() {
         store.put("Malachy", "Senior Dev");
         store.put("BetaByte", "ML Engineer");
     }
