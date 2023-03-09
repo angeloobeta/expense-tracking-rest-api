@@ -12,8 +12,8 @@ public class User {
     private String name;
 
 
-    public int getId() {
-        return userId;
+    public String getId() {
+        return String.valueOf(userId);
     }
 //
     public String getName(){

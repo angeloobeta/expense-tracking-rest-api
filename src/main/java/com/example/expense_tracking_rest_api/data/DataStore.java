@@ -11,7 +11,7 @@ public class DataStore {
 
     private List<User> userTable = new ArrayList<User>();
 
-    public  DataStore() {
+    public DataStore() {
         userTable.add(new User(2, 28,"obeta"));
         userTable.add(new User(1, 27,"ifeanyichukwu"));
         userTable.add(new User(3, 29,"betabyte"));
@@ -27,10 +27,11 @@ public class DataStore {
     }
 
     // Get user by ID
-    public User getUserById(int id){
+    public User getUserById(String id){
         for(User user: userTable){
             System.out.println(user);
-            if(user.getId() == id) System.out.println(id); return  user;
+            if(user.getId().equals(id))
+            return  user;
         }
         return null;
     }
@@ -39,9 +40,11 @@ public class DataStore {
     public User getUserByName(String name)
     {
         for(User user: userTable){
-            if(user.getName() == name)
-                System.out.println(name);
+            if(user.getName() == name){
+                System.out.println("This is ====>" + name);
                 return  user;
+            }
+
         }
         System.out.println("Failed to exe");
         return null;
@@ -50,7 +53,7 @@ public class DataStore {
 // GET user by Age
     public  User getUserByAge(int age){
         for(User user: userTable){
-            if(user.getAge() == age) System.out.println(age); return  user;
+            if(user.getAge() == age) return  user;
         };
         return  null;
     }
