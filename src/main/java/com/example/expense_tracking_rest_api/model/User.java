@@ -7,9 +7,9 @@ public class User {
         this.name = name;
     }
 
-    private    int userId;
-    private    int age;
-    private String name;
+    private final int userId;
+    private final int age;
+    private final String name;
 
 
     public String getId() {

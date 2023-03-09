@@ -24,8 +24,8 @@ public class Controller {
 
 
     @GetMapping("/search")
-    public User search(@RequestParam String q){
-        return db.getUserByName(q);
+    public User search(@RequestParam String name, @RequestParam String age, @RequestParam String id){
+        return db.queryByAnyField(name,age, id);
         }
 
     @GetMapping("/searchById")
