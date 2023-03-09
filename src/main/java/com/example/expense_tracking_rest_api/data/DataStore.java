@@ -22,13 +22,14 @@ public class DataStore {
 
 
     // Get all the users
-     public ArrayList<User> getAllUsers(){
-        return (ArrayList<User>) userTable;
+     public List<User> getAllUsers(){
+        return  userTable;
     }
 
     // Get user by ID
     public User getUserById(int id){
         for(User user: userTable){
+            System.out.println(user);
             if(user.getId() == id) System.out.println(id); return  user;
         }
         return null;
@@ -38,7 +39,6 @@ public class DataStore {
     public User getUserByName(String name)
     {
         for(User user: userTable){
-
             if(user.getName() == name)
                 System.out.println(name);
                 return  user;
