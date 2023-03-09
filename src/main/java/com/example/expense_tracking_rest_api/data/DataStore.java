@@ -62,4 +62,10 @@ public class DataStore {
         System.out.println("Failed to exe");
         return  null;
     }
+
+    //POST APIs
+    public User addUser(User user){
+        userTable.add(user);
+        return  user;
+    }
 }

@@ -2,15 +2,15 @@ package com.example.expense_tracking_rest_api.controller;
 
 import com.example.expense_tracking_rest_api.data.DataStore;
 import com.example.expense_tracking_rest_api.model.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class Controller {
+
+
+    // GET APIs
     DataStore db =  new DataStore();
     @GetMapping("/")
     public String home(){
@@ -46,6 +46,14 @@ public class Controller {
     public List<User> getAllUser(){
         return db.getAllUsers();
         }
+
+
+        // POST APIs
+
+    @PostMapping("/user")
+    public User createUser(@RequestBody User user){
+        return db.addUser(user);
+    }
 }
 
 
