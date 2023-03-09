@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 public class Controller {
+    DataStore db =  new DataStore();
     @GetMapping("/")
     public String home(){
         return "Home Page!";
@@ -24,30 +25,25 @@ public class Controller {
 
     @GetMapping("/search")
     public User search(@RequestParam String q){
-        DataStore db =  new DataStore();
         return db.getUserByName(q);
         }
 
     @GetMapping("/searchById")
     public User searchById(@RequestParam String id){
-        DataStore db =  new DataStore();
         return db.getUserById(id);
     }
 
     @GetMapping("/searchByName/{name}")
     public User searchByName(@PathVariable String name){
-        DataStore db =  new DataStore();
         return db.getUserByName(name);
         }
     @GetMapping("/searchByAge/{age}")
     public User searchByAge(@PathVariable String age){
-        DataStore db =  new DataStore();
         return db.getUserByAge(Integer.parseInt(age));
         }
 
         @GetMapping("/all-users/{users}")
     public List<User> getAllUser(){
-            DataStore db =  new DataStore();
         return db.getAllUsers();
         }
 }

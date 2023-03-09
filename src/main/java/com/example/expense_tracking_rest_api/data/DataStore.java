@@ -37,13 +37,14 @@ public class DataStore {
     }
 
     // GET user by Name
-    public User getUserByName(String name)
-    {
+    public User getUserByName(String name) {
         for(User user: userTable){
-            if(user.getName() == name){
-                System.out.println("This is ====>" + name);
-                return  user;
-            }
+//            if(user.getName() == name) return user;
+            if(user.getName().equals(name)) return user;
+//            {
+//                System.out.println("This is ====>" + name);
+//                return  user;
+//            }
 
         }
         System.out.println("Failed to exe");
