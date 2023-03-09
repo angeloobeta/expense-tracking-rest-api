@@ -3,7 +3,6 @@ package com.example.expense_tracking_rest_api.data;
 import com.example.expense_tracking_rest_api.model.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class DataStore {
@@ -23,8 +22,8 @@ public class DataStore {
 
 
     // Get all the users
-     public List<User> getAllUsers(){
-        return  userTable;
+     public ArrayList<User> getAllUsers(){
+        return (ArrayList<User>) userTable;
     }
 
     // Get user by ID

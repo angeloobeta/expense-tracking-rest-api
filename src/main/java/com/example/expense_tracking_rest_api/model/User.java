@@ -17,11 +17,11 @@ public class User {
     }
 //
     public String getName(){
-        return User.this.name;
+        return name;
     }
 //
     public int getAge(){
-        return  User.this.age;
+        return age;
     }
 }
 

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 public class Controller {
 
@@ -32,7 +34,7 @@ public class Controller {
         return db.getUserById(Integer.parseInt(id));
     }
 
-        @GetMapping("/searchByName")
+    @GetMapping("/searchByName")
     public User searchByName(@RequestParam String name){
             DataStore db =  new DataStore();
         return db.getUserByName(name);
@@ -43,13 +45,14 @@ public class Controller {
         return db.getUserByAge(Integer.parseInt(age));
         }
 
-//        @GetMapping("/all-users")
-//    public User getAllUser(){
-//            DataStore db =  new DataStore();
-//        return db.getAllUsers();
-//        }
+        @GetMapping("/all-users")
+    public ArrayList<User> getAllUser(){
+            DataStore db =  new DataStore();
+        return db.getAllUsers();
+        }
 }
 
 
-// TODO: Work on the API
+// TODO: Why does it keep returning the first object
+// TODO: Why does it return the first object even without the parameter
 // TODO: Refactor the whole code base
