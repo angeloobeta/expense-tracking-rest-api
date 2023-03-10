@@ -12,16 +12,12 @@ public class User {
     private final String name;
 
 
-    public String getId() {
-        return String.valueOf(userId);
-    }
+    public int getId() { return userId;}
 //
     public String getName(){
         return name;
     }
 //
-    public int getAge(){
-        return age;
-    }
+    public int getAge(){return age;}
 }
 

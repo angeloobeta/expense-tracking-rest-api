@@ -24,12 +24,12 @@ public class Controller {
 
 
     @GetMapping("/search")
-    public User search(@RequestParam String name, @RequestParam String age, @RequestParam String id){
+    public User search(@RequestParam String name, @RequestParam String age, @RequestParam int id){
         return db.queryByAnyField(name,age, id);
         }
 
     @GetMapping("/searchById")
-    public User searchById(@RequestParam String id){
+    public User searchById(@RequestParam int id){
         return db.getUserById(id);
     }
 
@@ -41,8 +41,12 @@ public class Controller {
     public User searchByAge(@PathVariable String age){
         return db.getUserByAge(Integer.parseInt(age));
         }
+@GetMapping("/searchById/{id}")
+    public User searchId(@PathVariable int id){
+        return db.getUserByAge(id);
+        }
 
-        @GetMapping("/all-users/{users}")
+        @GetMapping("/all-users")
     public List<User> getAllUser(){
         return db.getAllUsers();
         }
@@ -50,14 +54,11 @@ public class Controller {
 
         // POST APIs
 
-    @PostMapping("/user")
+    @PostMapping("/create-user")
     public User createUser(@RequestBody User user){
         return db.addUser(user);
     }
 }
 
 
-// TODO: Why does it keep returning the first object
-// TODO: Why does it return the first object even without the parameter
-// TODO: Refactor the whole code base
-// TODO: What's wrong with the forloop
+// TODO: Why does it keep making the id zero
