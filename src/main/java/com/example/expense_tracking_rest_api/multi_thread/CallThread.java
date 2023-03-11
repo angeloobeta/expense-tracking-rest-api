@@ -2,6 +2,8 @@ package com.example.expense_tracking_rest_api.multi_thread;
 
 import java.util.concurrent.CountDownLatch;
 
+import static java.lang.Thread.currentThread;
+
 public class CallThread {
     int numberOfThread = 10;
     CountDownLatch latch = new CountDownLatch(numberOfThread);
@@ -12,8 +14,7 @@ public class CallThread {
             thread.start();
         }
         latch.await();
-        System.out.println("All threads have completed their tasks ");
+        System.out.println("All threads have completed their tasks  "  + currentThread().getName());
     }
-
 
 }
