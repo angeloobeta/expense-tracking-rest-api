@@ -14,7 +14,8 @@ public class MultiThread extends  Thread{
          try{
              // Code to execute in this thread
              Thread.sleep(40000); // simulate some real work
-             System.out.println("The current thread =====> " + currentThread().getName() + "Priority level is  "+ currentThread().getId());
+             System.out.println("The curr" +
+                     "ent thread =====> " + currentThread().getName() + "Priority level is  "+ currentThread().getId());
              long now = System.currentTimeMillis();
              long seconds = now / 1000;
              System.out.println("Current time in seconds since the epoch: " + seconds);
