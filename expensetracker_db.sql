@@ -1,18 +1,18 @@
 -- since we will run the script multiply time add a drop statement at the begining of the file
-drop user expensetracker;
+drop user expense_tracker;
 drop database expense_tracker_db;
 
 -- user the predefine template of postgres
 create user expense_tracker with password 'password';
-create database expense_tracker_db with template=template0  owner=expensetracker;
+create database expense_tracker_db with template=template0  owner=expense_tracker;
 
 \connect expense_tracker_db;
 
 -- before creating any dbase object, we grant  privileges to user
-alter  default privileges  grant  all on tables  to expensetracker;
+alter  default privileges  grant  all on tables  to expense_tracker;
 
 -- as we will use sequence to generate primary key, grant sequences as well
-alter  default privileges grant all on sequences to expensetracker;
+alter  default privileges grant all on sequences to expense_tracker;
 
 -- for this rest api, we need three tables, user-account, categories, and for recording transactions
 -- user-account table
