@@ -17,7 +17,10 @@ public class UserServicesImpl implements UserServices{
     UserRepository userRepository;
     @Override
     public User validateUser(String email, String password) throws ExpenseTrackingAuthException {
-        return null;
+        // Make the email to lowercase
+        if(email != null) email = email.toLowerCase();
+        User user = userRepository.findByEmailAndPassword(email, password);
+        return  user;
     }
 
     @Override
@@ -32,7 +35,6 @@ public class UserServicesImpl implements UserServices{
 
         // call repository.create
         Integer userId = userRepository.createUser(firstName, lastName, email, password);
-
         return userRepository.findById(userId);
     }
 }

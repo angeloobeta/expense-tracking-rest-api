@@ -3,6 +3,7 @@ package com.example.expense_tracking_rest_api.repositories;
 import com.example.expense_tracking_rest_api.domain.User;
 import com.example.expense_tracking_rest_api.exception.ExpenseTrackingAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -16,13 +17,19 @@ import java.sql.Statement;
 public class UserRepositoryImpl implements UserRepository{
 
     // SQL statements for performing operations
-    private static final String SQL_CREATE = "INSERT INTO EXPENSE_TRACKER(USER_ID, FIRST_NAME, LAST_NAME, EMAIL, " + "PASSWORD) VALUES(NEXTVAL('EXPENSE_TRACKER_USERS_SEQ'), ?, ?, ?, ?)";
+    private static final String SQL_CREATE = "INSERT INTO EXPENSE_TRACKER(USER_ID, FIRST_NAME, LAST_NAME, EMAIL, " +
+                                             "PASSWORD) VALUES(NEXTVAL('EXPENSE_TRACKER_USERS_SEQ'), ?, ?, ?, ?)";
 
     // SQL statement for count by email
     private  static  final String SQL_COUNT_BY_EMAIL = "SELECT COUNT(*) FROM EXPENSE_TRACKER_USERS WHERE EMAIL = ?";
 
     // SQL statement for find by user_id
-    private  static  final String SQL_FIND_BY_USER_ID = "SELECT USER_ID, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD" + "FROM EXPENSE_TRACKER_USERS WHERE USER_ID = ?";
+    private  static  final String SQL_FIND_BY_USER_ID = "SELECT USER_ID, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD " +
+                                                        "FROM EXPENSE_TRACKER_USERS WHERE USER_ID = ?";
+
+    // SQL statement for find by email
+    private static final String SQL_FIND_BY_EMAIL = "SELECT FIRST_NAME, LAST_NAME, PASSWORD, EMAIL, PASSWORD" +
+                                                    "FROM EXPENSE_TRACKER_USERS WHERE EMAIL =?";
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -63,7 +70,14 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User findByEmailAndPassword(String email, String password) throws ExpenseTrackingAuthException {
-        return  null;
+        try{
+            User user = jdbcTemplate.queryForObject(SQL_FIND_BY_EMAIL,new Object []{email}, userRowMapper);
+            if(!password.equals(user.getPassword()))
+                throw new ExpenseTrackingAuthException("Incorrect Username or Password");
+                return user;
+        }catch (EmptyResultDataAccessException e){
+            throw new ExpenseTrackingAuthException("Incorrect Username or Password");
+        }
     }
 
     @Override
