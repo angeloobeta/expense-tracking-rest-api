@@ -27,7 +27,10 @@ public class UserServicesImpl implements UserServices{
     public User registerUser(String firstName, String lastName, String email, String password) throws ExpenseTrackingAuthException {
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
         if(email != null) email = email.toLowerCase();
-        if(!pattern.matcher(email).matches()) throw new ExpenseTrackingAuthException("Invalid email format");
+//        System.out.println("This is the email address ==> "+ email.toString());
+//        System.out.println("This is the firstName address ==> "+ firstName);
+//        System.out.println("This is the password address ==> "+ password);
+        if(!pattern.matcher(email.toString()).matches()) throw new ExpenseTrackingAuthException("Invalid email format");
 
         // get count by email
         Integer countByEmail = userRepository.getCountByEmail(email);

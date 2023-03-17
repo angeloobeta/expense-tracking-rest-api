@@ -5,10 +5,7 @@ import com.example.expense_tracking_rest_api.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +16,10 @@ public class UserResource {
 
     @Autowired
     UserServices userServices;
+    @GetMapping("/")
+    public String home(){
+        return "Home Page!";
+    }
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> loginUser(@RequestBody Map<String, Object> userMap){
@@ -39,7 +40,10 @@ public class UserResource {
         String lastname = (String) userMap.get("lastName");
         String email = (String) userMap.get("email");
         String password = (String) userMap.get("password");
-        User user = userServices.registerUser("firstName", "lastName", "email", "password");
+        System.out.println("This is the value of firstName "+ firstName);
+        System.out.println("This is the value of lastName "+ lastname);
+        System.out.println("This is the value of email "+ email);
+        userServices.registerUser("firstName", "lastName", "email", "password");
         Map<String, String> map = new HashMap<>();
         map.put("message", "registered successfully");
         // Todo: generate jwt token and send from here
